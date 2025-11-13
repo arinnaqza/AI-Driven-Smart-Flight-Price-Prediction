@@ -10,8 +10,18 @@ Unlike existing platforms such as Skyscanner that displays real-time ticket pric
 
 ## Team Members
 
-| Name | Organisation | Email |
-| :----: | :------: | :----: |
-| Arinna Qaisara | Dept. of Information Systems Hanyang University | arinnaqza@gmail.com |
-| Nur Sabrina | Dept. of Information Systems Hanyang University | sabrinarramly@gmail.com |
-| Winnie Eslyn | Dept. of Information Systems Hanyang University | winnieeslyn@gmail.com |
+| Name | Department | University | Email |
+| :----: | :------: | :----: | :----: |
+| Arinna Qaisara | Information Systems | Hanyang University | arinnaqza@gmail.com |
+| Nur Sabrina | Information Systems | Hanyang University | sabrinarramly@gmail.com |
+| Winnie Eslyn | Information Systems | Hanyang University | winnieeslyn@gmail.com |
+
+## I. Introduction
+
+## II. Datasets
+
+## III. Methodology
+
+## IV. Evaluation & Analysis
+
+## V. Related Work
