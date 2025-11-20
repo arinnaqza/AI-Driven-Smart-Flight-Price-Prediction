@@ -18,6 +18,17 @@ Unlike existing platforms such as Skyscanner that displays real-time ticket pric
 
 ## I. Introduction
 
+The motivation behind this project is to analyse real flight data and understand how ticket prices change as the departure date approaches. Instead of predicting exact prices, our goal is to uncover patterns between the number of days left before departure and the cost of the flight. By studying this relationship, we aim to identify which time windows typically offer cheaper prices and which periods see price spikes.
+
+By the end of the project, we want to:
+
+- Determine the optimal time frame to book flights based on historical patterns
+- Visualize how prices behave as the departure date gets closer
+- Provide insights that help international students make smarter booking decisions
+- Build a machine learning model that learns from these patterns and predicts expected price trends
+
+This project ultimately aims to offer practical, data-driven guidance that helps students save money and plan their travels more effectively.
+
 ## II. Datasets
 
 ## III. Methodology
