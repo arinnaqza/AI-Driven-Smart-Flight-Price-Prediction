@@ -71,6 +71,15 @@ All features and labels were preprocessed beforehand and exported as:
 - `y_train_krw.csv`
 - `y_test_krw.csv`
 
+```
+def load_data():
+    X_train = pd.read_csv('X_train_krw.csv')
+    X_test = pd.read_csv('X_test_krw.csv')
+    y_train = pd.read_csv('y_train_krw.csv').squeeze()
+    y_test = pd.read_csv('y_test_krw.csv').squeeze()
+    return X_train, X_test, y_train, y_test
+```
+
 The `load_data()`  function loads these datasets and ensures that the data structure matches scikit-learn’s expectations. Both training and testing labels were flattened using `.squeeze()` for compatibility with regressors.
 
 2. Model Evaluation Strategy
