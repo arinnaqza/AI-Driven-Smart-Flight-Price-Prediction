@@ -39,13 +39,15 @@ B. Original Features and Target
 
 The raw dataset contained key categorical and temporal information:
 
-| Feature Name | Description | Data Type (Original) |  |
-| :----: | :------: | :----: | :----: |
+The raw dataset contained key categorical and temporal information:
+
+| Feature Name | Description | Data Type (Original) |
+| :---: | :---: | :---: |
 | Price | The ticket fare | Numerical (Target) |
-| Airline | Name of the airline carrier. | Categorical | 
+| Airline | Name of the airline carrier | Categorical |
 | Date_of_Journey | Date of flight departure | Date/Time |
 | Source / Destination | Departure and arrival cities | Categorical |
-| Duration | Total flight time (e.g., "2h 50m") | String/Duration | 
+| Duration | Total flight time (e.g., "2h 50m") | String/Duration |
 | Total_Stops | Number of layovers | Categorical/String |
 
 C. Final Modeling Data Structure
@@ -147,29 +149,65 @@ Our analysis proceeds through three distinct modeling stages to establish a benc
 
 A. Stage 1: Baseline Model (Linear Regression)
 
-We first implement a Linear Regression model using `task_4_1_baseline_model`.
+We establish the performance floor using the simplest predictive model: **Linear Regression**. 
 
-Goal: The primary goal is to establish a simple, interpretable performance floor, a baseline MAE against which all advanced models must compete.
+This model assumes a straight-line relationship between features and price. It serves as our benchmark; if our advanced models cannot beat this simple approach, we know our feature engineering strategy needs revision.
 
-Implementation: We train the standard `sklearn.linear_model.LinearRegression` on the training set.
+```
+def task_4_1_baseline_model(X_train, X_test, y_train, y_test):
+    lr_model = LinearRegression()
+    lr_model.fit(X_train, y_train)
+    return lr_model, mae, r2
+```
 
 B. Stage 2: Initial Advanced Model 
 
-The core of our advanced modeling involves using a powerful Gradient Boosting Machine (GBM). We explored two versions of this stage:
+We then introduce a powerful Gradient Boosting Machine (GBM) to capture non-linearities in the data. We use specific hyperparameters to control the model's complexity:
+
+`n_estimators=1000`: We set the number of trees to 1000 to ensure the model has enough iterations to learn complex patterns.
+
+`learning_rate=0.05`: We use a lower learning rate to slow down the training, which acts as a regularization technique to prevent the model from overfitting to the training data.
 
 Version 1: LightGBM (LGBM)
 
 Model: `lightgbm.LGBMRegressor`.
 
-- Goal: We train a fast, efficient GBM model using solid initial parameters.
+For LightGBM, we explicitly set the objective to regression_l1. This forces the model to optimize for Mean Absolute Error (MAE) directly, rather than the standard Mean Squared Error. Since MAE is our primary business metric, this alignment often yields better practical results..
 
 - Initial Parameters: We configure the model to optimize directly for MAE (`objective='regression_l1'`, `metric='mae'`). We also incorporate ensemble techniques like feature subsampling (`feature_fraction=0.8`) and sample subsampling (`bagging_fraction=0.8`) to manage overfitting.
+
+```
+lgbm_params = {
+    'objective': 'regression_l1',
+    'n_estimators': 1000,
+    'learning_rate': 0.05,
+    'feature_fraction': 0.8,
+    'bagging_fraction': 0.8,
+}
+lgbm_model = lgb.LGBMRegressor(**lgbm_params)
+lgbm_model.fit(X_train, y_train)
+```
 
 Version 2: XGBoost
 
 Model: `xgboost.XGBRegressor`.
 
+For XGBoost, we use the standard reg:squarederror objective. We introduce randomness using colsample_bytree (using only 80% of features per tree) and subsample (using only 80% of data rows per tree). This randomness makes the model more robust and less likely to memorize noise in the dataset.
+
 - Initial Parameters: We configure this model for a standard squared error objective (`objective='reg:squarederror'`) and use similar subsampling controls (`colsample_bytree=0.8`, `subsample=0.8`).
+
+```
+xgb_params = {
+    'objective': 'reg:squarederror',
+    'n_estimators': 1000,
+    'learning_rate': 0.05,
+    'colsample_bytree': 0.8,
+    'subsample': 0.8,
+}
+xgb_model = xgb.XGBRegressor(**xgb_params)
+xgb_model.fit(X_train, y_train)
+
+```
 
 C. Stage 3: Final Tuned Champion Model
 
@@ -181,8 +219,36 @@ LightGBM Tuning: We load the best hyperparameters (e.g., increased `n_estimators
 
 XGBoost Tuning: We implement the optimized settings by translating the successful LightGBM parameters into corresponding XGBoost parameters (e.g., deeper `max_depth=10`, faster `learning_rate=0.1`). This acts as an educated guess for achieving near-optimal performance in the XGBoost architecture.
 
+## V. Model Evaluation Strategy and Analysis
 
+A. Evaluation Strategy
 
-## V. Evaluation & Analysis
+The `evaluate_model` function calculates our key metrics. In the print statement, we use the f-string formatting `:,.2f` for the MAE. This adds comma separators (e.g., 10,000) and fixes the decimal precision to two places, ensuring the currency output is readable and professional.
+
+```
+def evaluate_model(model, X_test, y_test, model_name="Model"):
+    y_pred = model.predict(X_test)
+    mae = mean_absolute_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    
+    print(f"Mean Absolute Error (MAE): {mae:,.2f} KRW")
+    return mae, r2
+```
+
+- Mean Absolute Error (MAE): Our primary metric, measured in KRW. We focus on minimizing this value.
+
+- R-squared ($$R^2$$) Score: Used to ensure the model explains a high proportion of the variability in price. We aim to maximize this score toward 1.0.
+
+B. Performance Analysis
+
+1. Baseline Assessment: The MAE from the Linear Regression model sets the initial benchmark. Any significant price prediction model must achieve an MAE substantially lower than this baseline.
+
+2. Advanced Model Impact: When introducing the initial GBM, we anticipate a sharp drop in MAE and a steep rise in $$R^2$$, validating our choice of a non-linear GBM architecture.
+
+3. Tuning Effectiveness: The Final Tuned Champion Model is expected to deliver the lowest MAE of all three stages. The reduction in MAE from the initial GBM to the final tuned GBM quantifies the direct value of our optimization efforts.
+
+C. Final Model Selection
+
+Our final model selection is based on the single most important metric: the model that produces the lowest Mean Absolute Error (MAE) on the unseen test set is declared our champion, as it consistently provides the most accurate and reliable flight price predictions in KRW.
 
 ## VI. Related Work
