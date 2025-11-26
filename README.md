@@ -60,7 +60,60 @@ The CSV files used to train our models (`X_train_krw.csv`, etc.) represent the d
 
 The resulting X data matrices contained these cleaned, engineered features, while the y data held the corresponding ticket prices in KRW.
 
-## III. Methodology
+## III. Exploratory Data Analysis
+
+Before training our machine learning models, we performed Exploratory Data Analysis (EDA) to better understand the structure of the dataset and uncover key patterns related to flight pricing. This step is crucial for identifying influential features, visualizing trends, and validating the assumptions behind our modelling approach.
+
+1. Distribution of Flight Prices (KRW)
+   
+   <img width="1000" height="600" alt="eda_price_distribution_krw" src="https://github.com/user-attachments/assets/d83d50dd-ed0f-4a53-a269-e833c95b8e1a" />
+
+   The distribution of ticket prices (converted from INR to KRW) is highly right-skewed:
+
+    - Many flights fall in the lower price range (under ~200,000 KRW)
+    - A long tail extends toward expensive flights (up to 2,000,000 KRW)
+    - Significant outliers exist, indicating large price variability
+    - Multiple peaks suggest mixed flight categories (low-cost vs premium carriers)
+
+    This skewed distribution justifies the need for non-linear models such as XGBoost or LightGBM, which handle irregular patterns better than simple linear models.
+   
+2. Median Flight Price vs. Day Left to Departure
+   
+   <img width="1200" height="700" alt="eda_price_vs_days_left_krw" src="https://github.com/user-attachments/assets/d6201a74-42a7-4a88-859c-1d19335510da" />
+
+    This plot directly addresses the core research question: **"When is the best time to book a flight?"
+**
+   Key observations:
+
+   - Prices are stable and lowest between 20-40 days before departure
+   - Booking too early (>40-50 days out) shows irregular fluctuations
+   - Prices rise dramatically in the final 10 days
+   - Last-minute booking (0-5 days) shows the highest, most unstable prices
+
+    The optimal booking window appears to be 20-40 days before departure, offering the most consistent and afforadable prices.
+
+3. Price Distribution by Airline
+   
+   <img width="1400" height="600" alt="eda_price_vs_airline_krw" src="https://github.com/user-attachments/assets/e1f4722a-1885-461d-800e-f22274382e62" />
+
+    The boxplot reveals strong differences in airline pricing:
+
+   - Vistara and Air India show significantly higher and more variable ticket prices
+   - SpiceJet, Go First, IndiGo, and AirAsia remain mostly within lower price ranges
+   - Premium airlines have wider boxes and longer whiskers, indicating higher volatility
+   - Budget airlines show tighter distributions, reflecting more predictable pricing
+     
+4. Price Distribution by Total Stops
+
+   <img width="800" height="600" alt="eda_price_vs_stops_krw" src="https://github.com/user-attachments/assets/64e498d2-c58e-4313-a9e3-f83f6328142a" />
+    
+    Comparing 0-stop vs 1-stop flights:
+
+   - 0-stop flights have lower median prices and smaller variation
+   - 1-stop flights have dramatically wider price spread, sometimes exceeding 2,000,000 KRW
+   - Some multi-stop routes are unexpectedly expensive, likely due to route length, layover duration, or airline combinations.
+
+## IV. Methodology
 This project evaluates different machine learning models to predict airline ticket prices in KRW. The methodology follows a structured workflow that begins with baseline modeling, progresses into advanced tree boosting models, and ends with model comparison and selection.
 
 1. Data Loading and Preparation
@@ -130,6 +183,6 @@ XGBoost Tuning: We implement the optimized settings by translating the successfu
 
 
 
-## IV. Evaluation & Analysis
+## V. Evaluation & Analysis
 
-## V. Related Work
+## VI. Related Work
