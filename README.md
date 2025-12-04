@@ -251,4 +251,9 @@ C. Final Model Selection
 
 Our final model selection is based on the single most important metric: the model that produces the lowest Mean Absolute Error (MAE) on the unseen test set is declared our champion, as it consistently provides the most accurate and reliable flight price predictions in KRW.
 
-## VI. Related Work
+## VI. Related Work 
+
+A relevant study to our project is ["Large-Scale Airline Ticket Price Prediction Using Ensemble Machine Learning Algorithm" by Muzaffer Ertürk, Murat Emeç, Ayşe Atılgan Sarıdoğan, and Nabi Küçükgergerli (2025)](https://dergipark.org.tr/tr/download/article-file/4957193). The authors used a large dataset of more than 300,000 flights and compared several machine learning models, including Linear Regression, Random Forest, LightGBM, CatBoost, and XGBoost.
+
+Their result shows that ensemble models, especially XGBoost, achieve the highest prediction accuracy. This research is highly relevant to our project because we also use similar features and apply a boosting model (XGBoost). While the paper focuses on large-scale price prediction, our project adapts the same techniques to help international students understand the best time to book affordable flight tickets based on historial pricing trends.
+
