@@ -265,7 +265,31 @@ This web interface demonstrates how the machine learning model can be used in a 
 You can try the live app here:
 🔗 https://ai-driven-smart-flight-price-prediction-dhun4sch2aytpntbyx9kfe.streamlit.app/
 
-## VII. Related Work 
+## VII. Limitations
+
+**1. Dataset Contains Only Indian Domestic Flights**
+   
+Our model is trained on Indian domestic flight data because there is no publicly available dataset for Korea–Malaysia or other international routes.
+This means the pricing patterns may not perfectly match Korean or Southeast Asian airline behavior, even though general trends are similar.
+
+**2. Limited Features Compared to Real Airline Pricing Systems**
+   
+Actual airline pricing considers many additional factors such as:
+
+- real-time demand
+- fuel cost changes
+- weather/seasons
+- dynamic pricing algorithms
+- promotions or seasonal events
+
+Because our dataset doesn’t include these variables, the predictions can only capture broad patterns, not exact real-world price behavior.
+
+**3. Historical Data, Not Real-Time Market Data**
+
+The model predicts price trends based on past flights, not live market conditions.
+If airlines suddenly change their strategy or introduce new pricing policies, the model won’t reflect those updates.
+
+## VIII. Related Work 
 
 A relevant study to our project is ["Large-Scale Airline Ticket Price Prediction Using Ensemble Machine Learning Algorithm" by Muzaffer Ertürk, Murat Emeç, Ayşe Atılgan Sarıdoğan, and Nabi Küçükgergerli (2025)](https://dergipark.org.tr/tr/download/article-file/4957193). The authors used a large dataset of more than 300,000 flights and compared several machine learning models, including Linear Regression, Random Forest, LightGBM, CatBoost, and XGBoost.
 
