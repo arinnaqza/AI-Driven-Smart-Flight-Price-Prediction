@@ -1,6 +1,5 @@
 # ------------------------------------------------------------
 # Streamlit App – Flight Price Predictor (KRW)
-# Dark blue + white theme with Poppins
 # ------------------------------------------------------------
 
 import os
