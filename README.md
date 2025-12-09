@@ -253,7 +253,16 @@ C. Final Model Selection
 
 Our final model selection is based on the single most important metric: the model that produces the lowest Mean Absolute Error (MAE) on the unseen test set is declared our champion, as it consistently provides the most accurate and reliable flight price predictions in KRW.
 
-## VI. Related Work 
+## VI. Streamlit Web Application
+
+To make our model accessible and easy to use, we deployed a simple interactive web application using Streamlit. The app allows users to input key flight details, such as airline, number of stops, class, flight duration, and days left before departure, and instantly receive a price prediction in KRW.
+
+This web interface demonstrates how the machine learning model can be used in a real-world scenario, helping users estimate whether their intended booking date is likely to be affordable or expensive based on historical pricing patterns.
+
+You can try the live app here:
+🔗 https://ai-driven-smart-flight-price-prediction-dhun4sch2aytpntbyx9kfe.streamlit.app/
+
+## VII. Related Work 
 
 A relevant study to our project is ["Large-Scale Airline Ticket Price Prediction Using Ensemble Machine Learning Algorithm" by Muzaffer Ertürk, Murat Emeç, Ayşe Atılgan Sarıdoğan, and Nabi Küçükgergerli (2025)](https://dergipark.org.tr/tr/download/article-file/4957193). The authors used a large dataset of more than 300,000 flights and compared several machine learning models, including Linear Regression, Random Forest, LightGBM, CatBoost, and XGBoost.
 
