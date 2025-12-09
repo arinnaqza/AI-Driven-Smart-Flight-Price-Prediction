@@ -39,8 +39,6 @@ B. Original Features and Target
 
 The raw dataset contained key categorical and temporal information:
 
-The raw dataset contained key categorical and temporal information:
-
 | Feature Name | Description | Data Type (Original) |
 | :---: | :---: | :---: |
 | Price | The ticket fare | Numerical (Target) |
