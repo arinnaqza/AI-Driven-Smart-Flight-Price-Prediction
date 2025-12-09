@@ -2,6 +2,8 @@
 
 ## Project Description ✈️ 
 
+### [Video Presentation](https://youtu.be/oU3fG_jbkgE)
+
 Flight tickets are one of the biggest financial concerns for international students who frequently travel between their home country and their study destination. Because airfare prices fluctuate due to multiple factors such as season, airline, and and departure schedule, students often struggle to find the best deals. This project aims to apply machine learning techniques to predict the fluctuations of flight ticket prices.
 
 Using publicly available datasets on Kaggle, [Flight Price Prediction](https://www.kaggle.com/datasets/shubhambathwal/flight-price-prediction), the project will analyse how features like airline, number of stops, duration, departure and arrival time influence ticket costs. 
