@@ -286,8 +286,7 @@ Because our dataset doesn’t include these variables, the predictions can only 
 
 **3. Historical Data, Not Real-Time Market Data**
 
-The model predicts price trends based on past flights, not live market conditions.
-If airlines suddenly change their strategy or introduce new pricing policies, the model won’t reflect those updates.
+Ideally, we wanted to collect our own real-time flight prices using web scraping. However, airline ticket prices change daily, and collecting meaningful time-series data would require at least 30 days of continuous scraping. Because this was not feasible within our project timeline, we relied on a publicly available Kaggle dataset instead. As a result, our model captures historical patterns but cannot reflect current market fluctuations or sudden price changes.
 
 ## VIII. Related Work 
 
