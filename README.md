@@ -269,7 +269,7 @@ You can try the live app here:
 
 **1. Dataset Contains Only Indian Domestic Flights**
    
-Our model is trained on Indian domestic flight data because there is no publicly available dataset for Korea–Malaysia or other international routes.
+Our model is trained on Indian domestic flight data because there is no publicly available dataset for Korea–Malaysia or other international routes that contain the exact data we needed for our analysis.
 This means the pricing patterns may not perfectly match Korean or Southeast Asian airline behavior, even though general trends are similar.
 
 **2. Limited Features Compared to Real Airline Pricing Systems**
