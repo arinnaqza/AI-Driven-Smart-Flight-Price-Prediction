@@ -33,7 +33,11 @@ This project ultimately aims to offer practical, data-driven guidance that helps
 
 A. Data Source and Context
 
-The dataset we used for this project was derived from the [Flight Price Prediction](https://www.kaggle.com/datasets/shubhambathwal/flight-price-prediction) collection available on Kaggle. This data captures essential factors influencing airline pricing, such as route, date, duration, and number of stops. A critical preliminary step in our data preparation was the conversion of all original ticket prices from Indian Rupees (INR) to our required currency, Korean Won (KRW). This sets the financial scale for all our model evaluations.
+The dataset we used for this project was derived from the [Flight Price Prediction](https://www.kaggle.com/datasets/shubhambathwal/flight-price-prediction) collection available on Kaggle. 
+
+<img width="1021" height="651" alt="Screenshot (158)" src="https://github.com/user-attachments/assets/f25cd4c8-e109-4ac2-a813-c883816bd938" />
+
+This data captures essential factors influencing airline pricing, such as route, date, duration, and number of stops. A critical preliminary step in our data preparation was the conversion of all original ticket prices from Indian Rupees (INR) to our required currency, Korean Won (KRW). This sets the financial scale for all our model evaluations.
 
 B. Original Features and Target
 
