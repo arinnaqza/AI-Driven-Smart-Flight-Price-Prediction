@@ -81,7 +81,7 @@ Before training our machine learning models, we performed Exploratory Data Analy
 
     This skewed distribution justifies the need for non-linear models such as XGBoost or LightGBM, which handle irregular patterns better than simple linear models.
    
-2. Median Flight Price vs. Day Left to Departure
+2. Median Flight Price vs. Days Left to Departure
    
    <img width="1200" height="700" alt="eda_price_vs_days_left_krw" src="https://github.com/user-attachments/assets/d6201a74-42a7-4a88-859c-1d19335510da" />
 
