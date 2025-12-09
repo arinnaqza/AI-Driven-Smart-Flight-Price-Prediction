@@ -120,7 +120,8 @@ Before training our machine learning models, we performed Exploratory Data Analy
 ## IV. Methodology
 This project evaluates different machine learning models to predict airline ticket prices in KRW. The methodology follows a structured workflow that begins with baseline modeling, progresses into advanced tree boosting models, and ends with model comparison and selection.
 
-1. Data Loading and Preparation
+**1. Data Loading and Preparation**
+
 All features and labels were preprocessed beforehand and exported as:
 
 - `X_train_krw.csv` 
@@ -139,17 +140,19 @@ def load_data():
 
 The `load_data()`  function loads these datasets and ensures that the data structure matches scikit-learn’s expectations. Both training and testing labels were flattened using `.squeeze()` for compatibility with regressors.
 
-2. Model Evaluation Strategy
+**2. Model Evaluation Strategy**
+
 We evaluate the performance consistently across all models using the test dataset (`X_test`, `y_test`) and two primary regression metrics:
 
 Mean Absolute Error (MAE): The key business metric, representing the average error magnitude, measured in Korean Won (KRW). It is less sensitive to outliers than Mean Squared Error (MSE).
 
 R-squared $$(R^2)$$ Score: A statistical measure representing the proportion of the variance in the target variable that is predictable from the features.
 
-3. Modeling Workflow: Three Stages
+**3. Modeling Workflow: Three Stages**
+
 Our analysis proceeds through three distinct modeling stages to establish a benchmark and find the optimal predictor.
 
-A. Stage 1: Baseline Model (Linear Regression)
+**A. Stage 1: Baseline Model (Linear Regression)**
 
 We establish the performance floor using the simplest predictive model: **Linear Regression**. 
 
@@ -162,7 +165,7 @@ def task_4_1_baseline_model(X_train, X_test, y_train, y_test):
     return lr_model, mae, r2
 ```
 
-B. Stage 2: Initial Advanced Model 
+**B. Stage 2: Initial Advanced Model**
 
 We then introduce a powerful Gradient Boosting Machine (GBM) to capture non-linearities in the data. We use specific hyperparameters to control the model's complexity:
 
@@ -170,7 +173,7 @@ We then introduce a powerful Gradient Boosting Machine (GBM) to capture non-line
 
 `learning_rate=0.05`: We use a lower learning rate to slow down the training, which acts as a regularization technique to prevent the model from overfitting to the training data.
 
-Version 1: LightGBM (LGBM)
+**Version 1: LightGBM (LGBM)**
 
 Model: `lightgbm.LGBMRegressor`.
 
@@ -190,7 +193,7 @@ lgbm_model = lgb.LGBMRegressor(**lgbm_params)
 lgbm_model.fit(X_train, y_train)
 ```
 
-Version 2: XGBoost
+**Version 2: XGBoost**
 
 Model: `xgboost.XGBRegressor`.
 
@@ -211,7 +214,7 @@ xgb_model.fit(X_train, y_train)
 
 ```
 
-C. Stage 3: Final Tuned Champion Model
+**C. Stage 3: Final Tuned Champion Model**
 
 In this stage, we apply an optimized set of hyperparameters to the final champion model to maximize its predictive power.
 
@@ -223,7 +226,7 @@ XGBoost Tuning: We implement the optimized settings by translating the successfu
 
 ## V. Model Evaluation Strategy and Analysis
 
-A. Evaluation Strategy
+**A. Evaluation Strategy**
 
 The `evaluate_model` function calculates our key metrics. In the print statement, we use the f-string formatting `:,.2f` for the MAE. This adds comma separators (e.g., 10,000) and fixes the decimal precision to two places, ensuring the currency output is readable and professional.
 
@@ -241,7 +244,7 @@ def evaluate_model(model, X_test, y_test, model_name="Model"):
 
 - R-squared ($$R^2$$) Score: Used to ensure the model explains a high proportion of the variability in price. We aim to maximize this score toward 1.0.
 
-B. Performance Analysis
+**B. Performance Analysis**
 
 1. Baseline Assessment: The MAE from the Linear Regression model sets the initial benchmark. Any significant price prediction model must achieve an MAE substantially lower than this baseline.
 
@@ -249,7 +252,7 @@ B. Performance Analysis
 
 3. Tuning Effectiveness: The Final Tuned Champion Model is expected to deliver the lowest MAE of all three stages. The reduction in MAE from the initial GBM to the final tuned GBM quantifies the direct value of our optimization efforts.
 
-C. Final Model Selection
+**C. Final Model Selection**
 
 Our final model selection is based on the single most important metric: the model that produces the lowest Mean Absolute Error (MAE) on the unseen test set is declared our champion, as it consistently provides the most accurate and reliable flight price predictions in KRW.
 
