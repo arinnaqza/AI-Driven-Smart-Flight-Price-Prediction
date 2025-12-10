@@ -87,8 +87,8 @@ Before training our machine learning models, we performed Exploratory Data Analy
    
    <img width="1200" height="700" alt="eda_price_vs_days_left_krw" src="https://github.com/user-attachments/assets/d6201a74-42a7-4a88-859c-1d19335510da" />
 
-    This plot directly addresses the core research question: **"When is the best time to book a flight?"
-**
+    This plot directly addresses the core research question: "When is the best time to book a flight?"
+
    Key observations:
 
    - Prices are stable and lowest between 20-40 days before departure
