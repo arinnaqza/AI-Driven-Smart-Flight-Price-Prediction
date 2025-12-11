@@ -271,6 +271,7 @@ LightGBM achieved a strong reduction in MAE compared to Linear Regression.
 However, XGBoost delivered an even lower MAE and a higher R², indicating superior predictive performance.
 
 This improvement demonstrates XGBoost’s ability to handle:
+
     - skewed price distributions
     - interactions between categorical and numerical variables
     - irregular trends across airlines, routes, and days-left features
